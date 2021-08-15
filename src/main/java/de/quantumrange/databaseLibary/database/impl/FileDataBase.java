@@ -24,7 +24,6 @@ public class FileDataBase implements DataBase<File> {
 	@Override
 	public <T> T get(long id, Data<T, File> template) {
 		tempAccessed.add(id);
-		System.out.println(tempAccessed);
 		if (cache.containsKey(id)) return (T) cache.get(id).getOrDefault(template);
 
 		File file = getFile(id, template);
@@ -37,7 +36,6 @@ public class FileDataBase implements DataBase<File> {
 	@Override
 	public <T> void set(long id, Data<T, File> data) {
 		tempAccessed.add(id);
-		System.out.println(tempAccessed);
 		cache.put(id, data);
 		data.write(getFile(id, data));
 	}
