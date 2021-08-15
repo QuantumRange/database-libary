@@ -9,12 +9,18 @@ public abstract class FileData<T> extends Data<T, File> {
 
 	private final @NotNull String fileExtension;
 
-	public FileData(@NotNull String fileExtension, @NotNull T defaultValue) {
+	public FileData(@NotNull T defaultValue, @NotNull String fileExtension) {
 		super(defaultValue);
-		this.fileExtension = fileExtension;
+		this.fileExtension = "." + fileExtension;
+	}
+
+	public FileData(@NotNull T value, @NotNull T defaultValue, @NotNull String fileExtension) {
+		super(value, defaultValue);
+		this.fileExtension = "." + fileExtension;
 	}
 
 	public @NotNull String getFileExtension() {
 		return fileExtension;
 	}
+
 }

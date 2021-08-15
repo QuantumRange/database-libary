@@ -7,16 +7,11 @@ import java.io.*;
 public class BinaryData<T> extends FileData<T> {
 
 	public BinaryData(@NotNull T defaultValue) {
-		super("dat", defaultValue);
+		super(defaultValue, "bin");
 	}
 
-	@Override
-	public void save(File destination) {
-		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(destination))) {
-			out.writeObject(getValue());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public BinaryData(@NotNull T value, @NotNull T defaultValue) {
+		super(value, defaultValue, "bin");
 	}
 
 	@Override
@@ -27,6 +22,24 @@ public class BinaryData<T> extends FileData<T> {
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void write(File destination) {
+		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(destination))) {
+
+			out.writeObject(getValue());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static <T> BinaryData<T> ofData(T data) {
+		return new BinaryData<>(data, data);
+	}
+
+	public static <T> BinaryData<T> ofTemplate(T data) {
+		return new BinaryData<>(data);
 	}
 
 }

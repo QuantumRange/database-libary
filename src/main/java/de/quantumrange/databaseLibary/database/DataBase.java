@@ -3,14 +3,16 @@ package de.quantumrange.databaseLibary.database;
 import de.quantumrange.databaseLibary.data.Data;
 
 /**
- * A {@link DataBase} can store and import {@link Data}.
+ * Store and Manage {@link Data}.
  *
  * @author QuantumRange
- * @version 1.0.1
+ * @version 1.0.3
+ * @param <J> is the Data Type.
  */
 public interface DataBase<J> {
 
-	<T> T read(long id, Data<T, J> template);
-	<T> boolean write(long id, Data<T, J> data);
+	<T> T get(long id, Data<T, J> template);
+	<T> void set(long id, Data<T, J> data);
+	void updateCache();
 
 }
