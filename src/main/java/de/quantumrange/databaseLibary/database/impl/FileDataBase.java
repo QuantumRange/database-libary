@@ -27,7 +27,8 @@ public class FileDataBase implements DataBase<File> {
 		System.out.println(tempAccessed);
 		if (cache.containsKey(id)) return (T) cache.get(id).getOrDefault(template);
 
-		template.read(getFile(id, template));
+		File file = getFile(id, template);
+		if (file.exists()) template.read(file);
 		cache.put(id, template);
 
 		return template.getDefaultValue();
