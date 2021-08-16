@@ -2,6 +2,8 @@ package de.quantumrange.databaseLibary.database;
 
 import de.quantumrange.databaseLibary.data.Data;
 
+import java.util.Set;
+
 /**
  * Store and Manage {@link Data}.
  *
@@ -13,6 +15,7 @@ public interface DataBase<J> {
 
 	<T> T get(long id, Data<T, J> template);
 	<T> void set(long id, Data<T, J> data);
+	Set<Long> keys();
 	void updateCache();
 
 }

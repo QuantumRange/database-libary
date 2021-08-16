@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class FileDataBase implements DataBase<File> {
 
@@ -38,6 +39,12 @@ public class FileDataBase implements DataBase<File> {
 		tempAccessed.add(id);
 		cache.put(id, data);
 		data.write(getFile(id, data));
+	}
+
+	@Override
+	public Set<Long> keys() {
+		return Arrays.stream(Objects.requireNonNull(path.list()))
+				.map(Long::parseLong).collect(Collectors.toSet());
 	}
 
 	@Override
