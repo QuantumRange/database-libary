@@ -44,7 +44,9 @@ public class FileDataBase implements DataBase<File> {
 	@Override
 	public Set<Long> keys() {
 		return Arrays.stream(Objects.requireNonNull(path.list()))
-				.map(Long::parseLong).collect(Collectors.toSet());
+				.map(s -> s.substring(s.lastIndexOf('.')))
+				.map(Long::parseLong)
+				.collect(Collectors.toSet());
 	}
 
 	@Override
