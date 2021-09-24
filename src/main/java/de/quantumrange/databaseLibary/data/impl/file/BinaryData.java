@@ -17,7 +17,6 @@ public class BinaryData<T> extends FileData<T> {
 	@Override
 	public void read(File source) {
 		try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(source))) {
-
 			setValue((T) in.readObject());
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();

@@ -31,7 +31,7 @@ public class FileDataBase implements DataBase<File> {
 		if (file.exists()) template.read(file);
 		cache.put(id, template);
 
-		return template.getDefaultValue();
+		return template.getValue() == null ? template.getDefaultValue() : template.getValue();
 	}
 
 	@Override
